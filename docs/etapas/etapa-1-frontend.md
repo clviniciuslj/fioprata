@@ -40,7 +40,7 @@ Ambas evitam a aparência padrão de lojas de moda e estão anotadas na especifi
 
 - Login não confere senha (não existe backend). Contas e pedidos novos somem ao reiniciar o servidor.
 - O estoque de demonstração não é baixado quando um pedido é criado; a reserva atômica com expiração é do backend.
-- Em rotas de produto e categoria, o **primeiro** acesso a um endereço inexistente responde 200 com a página "não encontrada" e `noindex`; os seguintes respondem 404. É o comportamento do Next.js 16 com pré-renderização parcial.
+- Em rotas de produto e categoria, o **primeiro** acesso a um endereço inexistente responde 200 com a página "não encontrada" e `noindex`. Logo em seguida o Next.js grava o 404 em cache, em segundo plano, e os acessos seguintes recebem 404. É o comportamento do Next.js 16 com pré-renderização parcial.
 - As fotos são ilustrações provisórias geradas por script.
 
 ## Pendências

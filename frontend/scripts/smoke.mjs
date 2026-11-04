@@ -72,12 +72,22 @@ try {
   check("X-Content-Type-Options: nosniff", home.headers.get("x-content-type-options") === "nosniff");
   check("sem cabeçalho X-Powered-By", !home.headers.has("x-powered-by"));
 
+  // Com pré-renderização parcial, o 1º acesso a um endereço desconhecido recebe a página "não encontrada"
+  // (status 200, noindex) e o Next.js grava o 404 em cache em segundo plano; os acessos seguintes recebem 404.
   for (const path of ["/produtos/inexistente", "/categorias/inexistente"]) {
     const first = await get(path);
     const html = await first.text();
     check(`${path}: página "não encontrada" com noindex`, html.includes("Página não encontrada") && html.includes("noindex"));
-    const second = await get(path);
-    check(`${path}: 404 a partir do 2º acesso`, second.status === 404, `recebeu ${second.status}`);
+    const started = Date.now();
+    let status = 0;
+    while (Date.now() - started < 5000) {
+      const res = await get(path);
+      await res.arrayBuffer();
+      status = res.status;
+      if (status === 404) break;
+      await new Promise((r) => setTimeout(r, 100));
+    }
+    check(`${path}: passa a responder 404`, status === 404, `último status ${status} após ${Date.now() - started} ms`);
   }
   const unknown = await get("/nao-existe");
   check("rota inexistente → 404", unknown.status === 404, `recebeu ${unknown.status}`);
