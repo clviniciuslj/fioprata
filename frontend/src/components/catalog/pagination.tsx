@@ -23,7 +23,7 @@ export function Pagination({ basePath, query, totalPages }: { basePath: string; 
           aria-label={`Página ${page}`}
           className={cx(
             "inline-flex size-10 items-center justify-center rounded-full",
-            page === query.page ? "bg-ink text-paper" : "text-ink-soft hover:bg-mist",
+            page === query.page ? "bg-rose-deep text-paper" : "text-ink-soft hover:bg-mist",
           )}
         >
           {page}

@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Italiana, Jost } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import { brand } from "@/config/brand";
 import "./globals.css";
 
-const italiana = Italiana({
-  variable: "--font-italiana",
-  weight: "400",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  weight: "500",
   subsets: ["latin"],
   display: "swap",
 });
@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${italiana.variable} ${jost.variable}`}>
+    <html lang="pt-BR" className={`${cormorant.variable} ${jost.variable}`}>
       <body className="flex min-h-dvh flex-col">{children}</body>
     </html>
   );

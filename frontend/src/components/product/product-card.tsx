@@ -19,10 +19,12 @@ export function ProductCard({ product, priority }: { product: ProductSummary; pr
             className="opacity-0 transition-opacity duration-500 [@media(hover:hover)]:group-hover:opacity-100"
           />
         )}
-        {(product.soldOut || product.isNew) && (
-          <span className="absolute left-3 top-3 rounded-full bg-paper/90 px-2.5 py-0.5 text-[12px] text-ink-soft">
-            {product.soldOut ? "Esgotado" : "Novo"}
-          </span>
+        {product.soldOut ? (
+          <span className="absolute left-3 top-3 rounded-full bg-paper/90 px-2.5 py-0.5 text-[12px] text-ink-soft">Esgotado</span>
+        ) : (
+          product.isNew && (
+            <span className="absolute left-3 top-3 rounded-full bg-cream px-2.5 py-0.5 text-[12px] text-rose-deep">Novo</span>
+          )
         )}
       </div>
       <h3 className="mt-3 text-[15px] leading-snug text-ink group-hover:underline group-hover:underline-offset-4">

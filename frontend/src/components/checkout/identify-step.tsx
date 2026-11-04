@@ -23,7 +23,7 @@ export function IdentifyStep({ demo, onIdentified }: { demo: boolean; onIdentifi
             type="button"
             aria-pressed={mode === value}
             onClick={() => setMode(value)}
-            className={cx("h-9 rounded-full px-4 text-[15px] transition-colors", mode === value ? "bg-ink text-paper" : "text-ink-soft hover:text-ink")}
+            className={cx("h-9 rounded-full px-4 text-[15px] transition-colors", mode === value ? "bg-rose-deep text-paper" : "text-ink-soft hover:text-ink")}
           >
             {label}
           </button>

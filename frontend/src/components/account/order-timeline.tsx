@@ -14,15 +14,15 @@ export function OrderTimeline({ order }: { order: Pick<OrderDetail, "status" | "
           {i < steps.length - 1 && (
             <span
               aria-hidden="true"
-              className={cx("absolute left-[9px] top-6 h-[calc(100%+0.5rem)] w-px", step.state === "done" ? "bg-ink" : "bg-line")}
+              className={cx("absolute left-[9px] top-6 h-[calc(100%+0.5rem)] w-px", step.state === "done" ? "bg-rose-deep" : "bg-line")}
             />
           )}
           <span
             aria-hidden="true"
             className={cx(
               "relative mt-1 size-[19px] rounded-full border",
-              step.state === "done" && "border-ink bg-ink",
-              step.state === "current" && "border-ink bg-paper ring-4 ring-mist",
+              step.state === "done" && "border-rose-deep bg-rose-deep",
+              step.state === "current" && "border-rose-deep bg-paper ring-4 ring-cream",
               step.state === "upcoming" && "border-line bg-paper",
             )}
           />

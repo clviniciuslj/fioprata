@@ -2,7 +2,7 @@
 
 @theme inline {
   --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-italiana), "Times New Roman", serif;
+  --font-display: var(--font-cormorant), "Times New Roman", serif;
 }
 
 @theme {
@@ -15,7 +15,14 @@
   --color-ink-soft: #3b4148;
   --color-muted: #6a7079;
   --color-sheen: #a9b0b8;
-  --color-focus: #3e5c76;
+
+  /* Cores do logotipo Bellie: rosé e creme. O rosé escuro garante contraste AA com texto branco. */
+  --color-rose: #c59797;
+  --color-rose-deep: #8e5b60;
+  --color-rose-ink: #774a4f;
+  --color-cream: #fae8df;
+
+  --color-focus: #8e5b60;
   --color-danger: #a23b3b;
   --color-success: #2e6b57;
 
@@ -47,7 +54,7 @@
   }
 
   ::selection {
-    background-color: var(--color-ink);
+    background-color: var(--color-rose-deep);
     color: var(--color-paper);
   }
 
@@ -69,6 +76,19 @@
 }
 
 @layer components {
+  /* Cormorant usa algarismos antigos por padrão; nos títulos ("Prata 925") ficam melhores alinhados. */
+  .font-display {
+    font-variant-numeric: lining-nums;
+  }
+
+  /* Logotipo: o SVG vira máscara e a cor vem de `color`, então o mesmo arquivo serve em qualquer fundo. */
+  .brand-mark {
+    display: block;
+    background-color: currentColor;
+    -webkit-mask: var(--mark) center / contain no-repeat;
+    mask: var(--mark) center / contain no-repeat;
+  }
+
   /* O único movimento automático da loja: um reflexo que atravessa a peça uma vez. */
   .sheen-once {
     position: relative;

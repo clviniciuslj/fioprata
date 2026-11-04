@@ -3,6 +3,7 @@ import { brand } from "@/config/brand";
 import { listCategories } from "@/lib/api/server";
 import { UserIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/container";
+import { LogoCompact } from "@/components/brand/logo";
 import { CartLink } from "./cart-link";
 import { MobileMenu } from "./mobile-menu";
 import { NavLinks } from "./nav-links";
@@ -18,8 +19,8 @@ export async function SiteHeader() {
     <header className="sticky top-0 z-30 border-b border-line bg-paper/95 backdrop-blur">
       <Container className="flex h-16 items-center gap-6 lg:h-20">
         <MobileMenu items={items} />
-        <Link href="/" className="font-display text-[26px] leading-none lg:text-[30px]">
-          {brand.name}
+        <Link href="/" aria-label={`${brand.name}, página inicial`} className="text-ink">
+          <LogoCompact />
         </Link>
         <nav aria-label="Categorias" className="ml-6 hidden lg:block">
           <NavLinks items={items} className="flex gap-7 text-[15px]" />

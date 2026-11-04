@@ -10,8 +10,8 @@ const base =
   "disabled:cursor-not-allowed disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-ink text-paper hover:bg-ink-soft",
-  secondary: "border border-ink text-ink hover:bg-ink hover:text-paper",
+  primary: "bg-rose-deep text-paper hover:bg-rose-ink",
+  secondary: "border border-rose-deep text-rose-deep hover:bg-rose-deep hover:text-paper",
   ghost: "text-ink underline-offset-4 hover:underline",
 };
 

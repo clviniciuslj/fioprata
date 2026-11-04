@@ -25,7 +25,7 @@ export function ProductGallery({ images, productName }: { images: ProductImageDa
                 aria-pressed={i === active}
                 className={cx(
                   "relative block aspect-[4/5] w-full overflow-hidden rounded-[4px] bg-mist ring-offset-2 ring-offset-paper transition",
-                  i === active ? "ring-1 ring-ink" : "opacity-70 hover:opacity-100",
+                  i === active ? "ring-1 ring-rose-deep" : "opacity-70 hover:opacity-100",
                 )}
               >
                 <ProductImage image={image} sizes="12vw" />

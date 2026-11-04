@@ -3,6 +3,7 @@ import { cacheLife } from "next/cache";
 import { brand } from "@/config/brand";
 import { listCategories } from "@/lib/api/server";
 import { Container } from "@/components/ui/container";
+import { LogoFull } from "@/components/brand/logo";
 
 async function currentYear() {
   "use cache";
@@ -18,8 +19,8 @@ export async function SiteFooter() {
     <footer className="mt-24 border-t border-line bg-surface">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.4fr]">
         <div className="max-w-xs">
-          <p className="font-display text-3xl">{brand.name}</p>
-          <p className="mt-3 text-[15px] text-muted">{brand.description}</p>
+          <LogoFull className="h-28 text-rose-deep" />
+          <p className="mt-5 text-[15px] text-muted">{brand.description}</p>
         </div>
 
         <nav aria-label="Loja">

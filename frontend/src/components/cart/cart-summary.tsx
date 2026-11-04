@@ -57,7 +57,7 @@ export function CartSummary({ quote, state, onStateChange, updating }: Props) {
         <div className="mt-5">
           <p className="text-[15px] text-ink-soft">Faltam {formatBRL(remaining)} para o frete grátis.</p>
           <div className="mt-2 h-1 overflow-hidden rounded-full bg-mist" aria-hidden="true">
-            <div className="h-full bg-ink transition-[width] duration-500" style={{ width: `${Math.round(progress * 100)}%` }} />
+            <div className="h-full bg-rose-deep transition-[width] duration-500" style={{ width: `${Math.round(progress * 100)}%` }} />
           </div>
         </div>
       )}

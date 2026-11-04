@@ -151,15 +151,15 @@ function Step({
   return (
     <li
       aria-current={state === "current" ? "step" : undefined}
-      className={cx("rounded-[4px] border p-5 sm:p-6", state === "current" ? "border-ink bg-surface" : "border-line")}
+      className={cx("rounded-[4px] border p-5 sm:p-6", state === "current" ? "border-rose-deep bg-surface" : "border-line")}
     >
       <div className="flex items-center justify-between gap-4">
         <h2 className={cx("flex items-center gap-3 text-[17px]", state === "upcoming" ? "text-muted" : "text-ink")}>
           <span
             className={cx(
               "inline-flex size-7 items-center justify-center rounded-full border text-[13px]",
-              state === "upcoming" ? "border-line" : "border-ink",
-              state === "done" && "bg-ink text-paper",
+              state === "upcoming" ? "border-line" : "border-rose-deep",
+              state === "done" && "bg-rose-deep text-paper",
             )}
             aria-hidden="true"
           >

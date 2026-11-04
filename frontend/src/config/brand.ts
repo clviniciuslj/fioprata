@@ -3,7 +3,7 @@
  * endereço dependem do registro da empresa. Troque os valores abaixo e o site inteiro acompanha.
  */
 export const brand = {
-  name: "Bella Pratas",
+  name: "Bellie",
   tagline: "Joias em prata 925",
   description:
     "Anéis, colares, brincos, pulseiras e pingentes em prata 925, com envio para todo o Brasil.",

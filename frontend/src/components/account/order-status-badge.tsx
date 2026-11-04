@@ -3,10 +3,10 @@ import { ORDER_STATUS_LABEL } from "@/lib/order-status";
 import { cx } from "@/lib/cx";
 
 const tone: Record<OrderStatus, string> = {
-  awaiting_payment: "border-ink text-ink",
-  payment_approved: "border-ink text-ink",
-  preparing: "border-ink text-ink",
-  shipped: "border-ink bg-ink text-paper",
+  awaiting_payment: "border-rose-deep text-rose-deep",
+  payment_approved: "border-rose-deep text-rose-deep",
+  preparing: "border-rose-deep text-rose-deep",
+  shipped: "border-rose-deep bg-rose-deep text-paper",
   delivered: "border-success text-success",
   cancelled: "border-line text-muted",
   expired: "border-line text-muted",

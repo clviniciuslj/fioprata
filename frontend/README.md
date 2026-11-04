@@ -47,6 +47,7 @@ Copie `.env.example` para `.env.local` para alterar.
 | O quê | Onde |
 |---|---|
 | Nome, slogan, contatos, razão social e CNPJ | `src/config/brand.ts` |
+| Logotipo (vetores) e ícone do navegador | `public/brand/` e `src/app/icon.png`; referência original em `docs/marca/` |
 | Cores e fontes | `src/app/globals.css` (tokens) e `src/app/layout.tsx` (fontes) |
 | Produtos, categorias e frete de demonstração | `src/lib/demo/catalog-data.ts` |
 | Ilustrações provisórias | `npm run demo-art` (gera `public/demo-art/`) |

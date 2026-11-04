@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { brand } from "@/config/brand";
 import { CloseIcon, MenuIcon } from "@/components/ui/icons";
+import { LogoCompact } from "@/components/brand/logo";
 import { NavLinks, type NavItem } from "./nav-links";
 
 /** Gaveta do celular. O <dialog> nativo prende o foco e fecha com Esc. */
@@ -28,8 +29,8 @@ export function MobileMenu({ items }: { items: NavItem[] }) {
         className="m-0 h-dvh max-h-none w-[min(22rem,88vw)] max-w-none bg-paper p-0 text-ink backdrop:bg-ink/30 open:flex open:flex-col"
       >
         <div className="flex items-center justify-between border-b border-line px-4 py-3">
-          <Link href="/" onClick={close} className="font-display text-2xl">
-            {brand.name}
+          <Link href="/" onClick={close} aria-label={`${brand.name}, página inicial`} className="text-ink">
+            <LogoCompact />
           </Link>
           <button type="button" onClick={close} className="inline-flex size-11 items-center justify-center" aria-label="Fechar menu">
             <CloseIcon />

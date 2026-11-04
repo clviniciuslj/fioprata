@@ -17,7 +17,7 @@ export function CartLink() {
       <BagIcon />
       <span className="hidden sm:inline">Carrinho</span>
       {visibleCount > 0 && (
-        <span className="absolute right-0 top-1 inline-flex min-w-5 items-center justify-center rounded-full bg-ink px-1 text-[11px] leading-5 text-paper sm:static">
+        <span className="absolute right-0 top-1 inline-flex min-w-5 items-center justify-center rounded-full bg-rose-deep px-1 text-[11px] leading-5 text-paper sm:static">
           {visibleCount}
         </span>
       )}

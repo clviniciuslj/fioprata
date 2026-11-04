@@ -67,7 +67,7 @@ export function PurchasePanel({ product }: { product: ProductDetail }) {
                   aria-label={soldOut ? `${v.label}, esgotado` : (v.label ?? undefined)}
                   className={cx(
                     "h-11 min-w-16 rounded-full border px-4 text-[15px] transition-colors",
-                    selected ? "border-ink bg-ink text-paper" : "border-line bg-surface text-ink hover:border-ink",
+                    selected ? "border-rose-deep bg-rose-deep text-paper" : "border-line bg-surface text-ink hover:border-rose-deep",
                     soldOut && "cursor-not-allowed border-line bg-transparent text-muted line-through hover:border-line",
                   )}
                 >
