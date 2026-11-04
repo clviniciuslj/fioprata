@@ -1,4 +1,13 @@
-import type { ApiError, CartQuote, CartQuoteRequest } from "./contract";
+import type {
+  ApiError,
+  CartQuote,
+  CartQuoteRequest,
+  Customer,
+  ForgotPasswordResponse,
+  LoginRequest,
+  RegisterRequest,
+  RegisterResponse,
+} from "./contract";
 
 /**
  * Chamadas feitas pelo navegador. Sempre para `/api/*` no mesmo domínio:
@@ -38,4 +47,12 @@ async function request<T>(
 
 export const browserApi = {
   quoteCart: (req: CartQuoteRequest) => request<CartQuote>("POST", "/api/cart/quote", req),
+
+  register: (req: RegisterRequest) => request<RegisterResponse>("POST", "/api/auth/register", req),
+  login: (req: LoginRequest) => request<Customer>("POST", "/api/auth/login", req),
+  logout: () => request<null>("POST", "/api/auth/logout"),
+  me: () => request<Customer>("GET", "/api/auth/me"),
+  confirmEmail: (token: string) => request<null>("POST", "/api/auth/confirm-email", { token }),
+  forgotPassword: (email: string) => request<ForgotPasswordResponse>("POST", "/api/auth/forgot-password", { email }),
+  resetPassword: (token: string, password: string) => request<null>("POST", "/api/auth/reset-password", { token, password }),
 };

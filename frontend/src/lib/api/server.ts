@@ -2,14 +2,17 @@ import "server-only";
 import type {
   CatalogQuery,
   Category,
+  Customer,
   Page,
   ProductDetail,
   ProductSummary,
   ShippingRule,
 } from "./contract";
 import { API_MODE_NOT_IMPLEMENTED, dataSource } from "./data-source";
+import { customerFromSession } from "@/lib/demo/accounts";
 import * as demo from "@/lib/demo/catalog";
 import { demoShippingRule } from "@/lib/demo/catalog-data";
+import { readSessionToken } from "@/lib/demo/session-cookie";
 
 /**
  * Acesso a dados usado pelas páginas renderizadas no servidor.
@@ -53,4 +56,10 @@ export function listProductSlugs(): Promise<string[]> {
 
 export function getShippingRule(): Promise<ShippingRule> {
   return demoOnly(() => demoShippingRule);
+}
+
+/** Lê a sessão do cookie: é dado de requisição, então quem chama precisa estar dentro de um <Suspense>. */
+export async function getCurrentCustomer(): Promise<Customer | null> {
+  if (dataSource() !== "demo") throw new Error(API_MODE_NOT_IMPLEMENTED);
+  return customerFromSession(await readSessionToken());
 }
