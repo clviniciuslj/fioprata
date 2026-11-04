@@ -1,12 +1,14 @@
 import type { Customer, OrderDetail } from "@/lib/api/contract";
+import { seedOrders } from "./seed-orders";
 
 /**
  * Estado da demonstração, só em memória: some ao reiniciar o servidor.
  * Fica em `globalThis` para sobreviver ao recarregamento de módulos em desenvolvimento.
  */
 
-export const DEMO_SESSION_COOKIE = "demo_session";
-export const DEMO_CUSTOMER_EMAIL = "cliente@example.com";
+import { DEMO_CUSTOMER_EMAIL } from "./constants";
+
+export { DEMO_CUSTOMER_EMAIL, DEMO_SESSION_COOKIE } from "./constants";
 
 export interface DemoOrder extends OrderDetail {
   customerId: string;
@@ -30,7 +32,7 @@ function createStore(): DemoStore {
     sessions: new Map(),
     emailTokens: new Map(),
     resetTokens: new Map(),
-    orders: new Map(),
+    orders: new Map(seedOrders.map((o) => [o.number, o])),
     idempotency: new Map(),
     orderSeq: 104820,
   };

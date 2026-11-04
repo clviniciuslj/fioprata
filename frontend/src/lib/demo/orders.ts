@@ -98,6 +98,12 @@ export function createDemoOrder(
   return { ok: true, order: toPublic(order) };
 }
 
+/** Só devolve o pedido ao próprio cliente; para qualquer outro, é como se não existisse. */
+export function getOrderFor(customerId: string, number: string): OrderDetail | null {
+  const order = demoStore.orders.get(number);
+  return order && order.customerId === customerId ? toPublic(order) : null;
+}
+
 export function listOrdersFor(customerId: string): OrderSummary[] {
   return [...demoStore.orders.values()]
     .filter((o) => o.customerId === customerId)

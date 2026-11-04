@@ -3,6 +3,8 @@ import type {
   CatalogQuery,
   Category,
   Customer,
+  OrderDetail,
+  OrderSummary,
   Page,
   ProductDetail,
   ProductSummary,
@@ -12,6 +14,7 @@ import { API_MODE_NOT_IMPLEMENTED, dataSource } from "./data-source";
 import { customerFromSession } from "@/lib/demo/accounts";
 import * as demo from "@/lib/demo/catalog";
 import { demoShippingRule } from "@/lib/demo/catalog-data";
+import { getOrderFor, listOrdersFor } from "@/lib/demo/orders";
 import { readSessionToken } from "@/lib/demo/session-cookie";
 
 /**
@@ -62,4 +65,16 @@ export function getShippingRule(): Promise<ShippingRule> {
 export async function getCurrentCustomer(): Promise<Customer | null> {
   if (dataSource() !== "demo") throw new Error(API_MODE_NOT_IMPLEMENTED);
   return customerFromSession(await readSessionToken());
+}
+
+/** Pedidos do cliente da sessão atual; sem sessão, lista vazia. */
+export async function listOrders(): Promise<OrderSummary[]> {
+  const customer = await getCurrentCustomer();
+  return customer ? listOrdersFor(customer.id) : [];
+}
+
+/** Pedido do cliente da sessão atual; pedido de outra pessoa ou inexistente é `null`. */
+export async function getOrder(number: string): Promise<OrderDetail | null> {
+  const customer = await getCurrentCustomer();
+  return customer ? getOrderFor(customer.id, number) : null;
 }

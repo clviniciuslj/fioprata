@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Address } from "@/lib/api/contract";
-import { RESERVATION_MINUTES, createDemoOrder, listOrdersFor } from "./orders";
+import { RESERVATION_MINUTES, createDemoOrder, getOrderFor, listOrdersFor } from "./orders";
 
 const address: Address = {
   recipient: "Maria Silva",
@@ -71,5 +71,31 @@ describe("createDemoOrder", () => {
   it("recusa carrinho vazio", () => {
     const result = createDemoOrder(newCustomer(), { items: [], address }, "chave-z", NOW);
     expect(result).toMatchObject({ ok: false, status: 400 });
+  });
+});
+
+describe("getOrderFor", () => {
+  it("devolve o pedido ao próprio cliente", () => {
+    const customer = newCustomer();
+    const created = createDemoOrder(customer, { items: [{ variantId: "p01-a16", quantity: 1 }], address }, "chave-dono", NOW);
+    if (!created.ok) throw new Error("pedido não criado");
+    expect(getOrderFor(customer, created.order.number)?.number).toBe(created.order.number);
+  });
+
+  it("nunca devolve o pedido de outro cliente", () => {
+    const created = createDemoOrder(newCustomer(), { items: [{ variantId: "p01-a16", quantity: 1 }], address }, "chave-alheia", NOW);
+    if (!created.ok) throw new Error("pedido não criado");
+    expect(getOrderFor(newCustomer(), created.order.number)).toBeNull();
+  });
+
+  it("devolve null para número inexistente", () => {
+    expect(getOrderFor("c-demo", "P-000000")).toBeNull();
+  });
+});
+
+describe("pedidos de exemplo do cliente demo", () => {
+  it("existem em vários status para mostrar o acompanhamento", () => {
+    const statuses = listOrdersFor("c-demo").map((o) => o.status);
+    expect(statuses).toEqual(expect.arrayContaining(["delivered", "shipped", "cancelled", "expired"]));
   });
 });
