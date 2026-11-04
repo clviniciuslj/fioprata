@@ -1,9 +1,9 @@
 /**
- * Identidade provisória da loja. O nome comercial ainda não foi definido:
- * troque os valores abaixo e o site inteiro acompanha.
+ * Identidade da loja. O nome comercial foi definido em 2026-11-04; razão social, CNPJ e
+ * endereço dependem do registro da empresa. Troque os valores abaixo e o site inteiro acompanha.
  */
 export const brand = {
-  name: "Sua Marca",
+  name: "Bella Pratas",
   tagline: "Joias em prata 925",
   description:
     "Anéis, colares, brincos, pulseiras e pingentes em prata 925, com envio para todo o Brasil.",
