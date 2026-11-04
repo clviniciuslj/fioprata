@@ -21,3 +21,6 @@ coverage/
 *.log
 .DS_Store
 Thumbs.db
+
+# Área de trabalho local das ferramentas de agente
+.superpowers/

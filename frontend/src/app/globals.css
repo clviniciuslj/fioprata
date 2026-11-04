@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-italiana), "Times New Roman", serif;
+}
+
+@theme {
+  /* Paleta mineral: tons frios da prata, sem dourado. */
+  --color-paper: #fbfbfc;
+  --color-surface: #ffffff;
+  --color-mist: #edeff1;
+  --color-line: #dadde1;
+  --color-ink: #23272c;
+  --color-ink-soft: #3b4148;
+  --color-muted: #6a7079;
+  --color-sheen: #a9b0b8;
+  --color-focus: #3e5c76;
+  --color-danger: #a23b3b;
+  --color-success: #2e6b57;
+
+  --animate-sheen: sheen 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s 1 both;
+
+  @keyframes sheen {
+    from {
+      transform: translateX(-120%) skewX(-18deg);
+    }
+    to {
+      transform: translateX(220%) skewX(-18deg);
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* O único movimento automático da loja: um reflexo que atravessa a peça uma vez. */
+  .sheen-once {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sheen-once::after {
+    content: "";
+    position: absolute;
+    inset: -10% auto -10% 0;
+    width: 35%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(255 255 255 / 0.55),
+      transparent
+    );
+    animation: var(--animate-sheen);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sheen-once::after {
+      display: none;
+    }
+  }
+}
