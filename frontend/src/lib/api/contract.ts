@@ -17,15 +17,16 @@ export function isUF(value: unknown): value is UF {
 
 // Catálogo
 
+export interface ProductImage {
+  src: string;
+  alt: string;
+}
+
 export interface Category {
   slug: string;
   name: string;
   description: string;
-}
-
-export interface ProductImage {
-  src: string;
-  alt: string;
+  image: ProductImage | null;
 }
 
 export interface ProductSpec {
