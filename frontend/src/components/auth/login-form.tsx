@@ -3,13 +3,20 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
+import type { Customer } from "@/lib/api/contract";
 import { browserApi } from "@/lib/api/browser";
 import { safeReturnPath } from "@/lib/safe-return";
 import { Button } from "@/components/ui/button";
 import { TextField } from "@/components/ui/field";
 import { FormError, currentSearchParam } from "./auth-shell";
 
-export function LoginForm({ demo }: { demo: boolean }) {
+interface Props {
+  demo: boolean;
+  /** Na finalização, o login acontece no lugar, sem trocar de página. */
+  onLoggedIn?: (customer: Customer) => void;
+}
+
+export function LoginForm({ demo, onLoggedIn }: Props) {
   const router = useRouter();
   const [email, setEmail] = useState(demo ? "cliente@example.com" : "");
   const [password, setPassword] = useState("");
@@ -25,6 +32,11 @@ export function LoginForm({ demo }: { demo: boolean }) {
     if (!result.ok) {
       setError(result.error.title);
       setSubmitting(false);
+      return;
+    }
+    if (onLoggedIn) {
+      router.refresh();
+      onLoggedIn(result.data);
       return;
     }
     router.replace(safeReturnPath(currentSearchParam("voltar")));

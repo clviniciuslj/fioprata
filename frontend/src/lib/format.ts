@@ -18,6 +18,12 @@ const dateTime = new Intl.DateTimeFormat("pt-BR", {
   minute: "2-digit",
 });
 
+const timeOnly = new Intl.DateTimeFormat("pt-BR", {
+  timeZone: TIME_ZONE,
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
 /** Valores monetários trafegam sempre em centavos inteiros. */
 export function formatBRL(cents: number): string {
   return currency.format(cents / 100);
@@ -34,4 +40,8 @@ export function formatDate(iso: string): string {
 
 export function formatDateTime(iso: string): string {
   return dateTime.format(new Date(iso));
+}
+
+export function formatTime(iso: string): string {
+  return timeOnly.format(new Date(iso));
 }

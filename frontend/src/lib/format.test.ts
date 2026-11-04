@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatBRL, formatDate, formatDateTime, formatPostalCode } from "./format";
+import { formatBRL, formatDate, formatDateTime, formatPostalCode, formatTime } from "./format";
 
 // Intl separa "R$" do número com espaço não separável; normalizamos para comparar.
 const normalize = (s: string) => s.replace(/ /g, " ");
@@ -28,6 +28,12 @@ describe("formatDate", () => {
   it("usa o fuso de São Paulo", () => {
     // 02:00 UTC do dia 5 ainda é dia 4 em São Paulo (UTC-3).
     expect(formatDate("2026-11-05T02:00:00Z")).toContain("4 de novembro");
+  });
+});
+
+describe("formatTime", () => {
+  it("mostra só hora e minuto no fuso de São Paulo", () => {
+    expect(formatTime("2026-11-04T15:30:00Z")).toBe("12:30");
   });
 });
 

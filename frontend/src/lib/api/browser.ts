@@ -2,6 +2,8 @@ import type {
   ApiError,
   CartQuote,
   CartQuoteRequest,
+  CreateOrderRequest,
+  CreateOrderResponse,
   Customer,
   ForgotPasswordResponse,
   LoginRequest,
@@ -55,4 +57,8 @@ export const browserApi = {
   confirmEmail: (token: string) => request<null>("POST", "/api/auth/confirm-email", { token }),
   forgotPassword: (email: string) => request<ForgotPasswordResponse>("POST", "/api/auth/forgot-password", { email }),
   resetPassword: (token: string, password: string) => request<null>("POST", "/api/auth/reset-password", { token, password }),
+
+  /** A mesma chave em novas tentativas garante que o servidor nunca crie dois pedidos para o mesmo clique. */
+  createOrder: (req: CreateOrderRequest, idempotencyKey: string) =>
+    request<CreateOrderResponse>("POST", "/api/orders", req, { "Idempotency-Key": idempotencyKey }),
 };
