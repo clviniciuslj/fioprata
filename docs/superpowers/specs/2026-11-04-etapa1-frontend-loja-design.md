@@ -28,8 +28,8 @@ Entregar a loja virtual completa em termos de interface e navegação, com dados
 ## 3. Decisões tomadas durante a ausência do proprietário (revisar)
 
 1. **Marca provisória:** "Sua Marca", slogan "Joias em prata 925". Tudo em `frontend/src/config/brand.ts` (nome, slogan, contatos, razão social, CNPJ, redes). Nenhum nome comercial inventado.
-2. **Tipografia:** Bodoni Moda (títulos, alto contraste, tom editorial de joalheria) + Jost (textos e navegação, geométrica e legível). Ambas do Google Fonts via `next/font` (auto-hospedadas no build, sem chamadas ao Google em produção).
-3. **Paleta:** fundo porcelana claro, texto quase preto, cinzas neutros e um tom prata para detalhes. Sem dourado. Só tema claro (pedido: "fundo predominantemente claro").
+2. **Tipografia:** Italiana (títulos grandes; traço finíssimo que lembra fio de prata) + Jost (textos e navegação, geométrica e legível). Ambas do Google Fonts via `next/font` (auto-hospedadas no build, sem chamadas ao Google em produção). *Revisado na implementação: Bodoni Moda foi trocada por ser a escolha padrão de lojas de moda.*
+3. **Paleta:** mineral e fria — quase branco, névoa cinza-azulada nos fundos das fotos, texto em "prata oxidada". Sem dourado. Só tema claro (pedido: "fundo predominantemente claro"). *Revisado na implementação: o fundo porcelana quente foi trocado por tons frios, mais próximos da prata.*
 4. **Fotos provisórias:** ilustrações vetoriais originais (traço fino com brilho prateado) por tipo de peça. Servem até as fotografias reais existirem; o componente de imagem já aceita fotos reais.
 5. **Modo demonstração visível:** enquanto os dados forem de demonstração, uma faixa fixa avisa "Ambiente de demonstração — produtos, contas e pedidos são fictícios". Nenhum pagamento é simulado; pedidos de demonstração ficam sempre "Aguardando pagamento".
 6. **Login em modo demonstração não verifica senha** (não há backend). Nada é gravado em disco; tudo fica em memória do servidor de desenvolvimento e some ao reiniciar.
@@ -43,9 +43,10 @@ Entregar a loja virtual completa em termos de interface e navegação, com dados
 ## 4. Identidade visual
 
 - **Tom:** editorial, silencioso, com respiro. Fotografia grande, poucos elementos, linhas finas (1px) em vez de caixas com sombra.
-- **Tokens de cor:** `bg #F6F5F2`, `surface #FFFFFF`, `ink #17181A`, `ink-soft #3A3B3E`, `muted #75736E`, `line #E3E0DA`, `mist #ECEDEE` (fundo das imagens), `silver #B9BBBE`, `focus #4F6475`, `danger #9B2C2C`, `success #2F5D50`.
-- **Tipos:** títulos em Bodoni Moda (pesos 400–500, nunca negrito pesado); rótulos e navegação em Jost maiúsculas com espaçamento amplo; corpo em Jost 15–16px.
-- **Movimento:** transições de 200–500ms (aparecimento suave, troca de imagem no hover do card). Tudo desligado com `prefers-reduced-motion`.
+- **Tokens de cor:** `paper #FBFBFC`, `surface #FFFFFF`, `mist #EDEFF1` (fundo das imagens), `line #DADDE1`, `ink #23272C`, `ink-soft #3B4148`, `muted #6A7079`, `sheen #A9B0B8`, `focus #3E5C76`, `danger #A23B3B`, `success #2E6B57`.
+- **Tipos:** títulos grandes em Italiana; navegação, rótulos e corpo em Jost (16px), sempre em caixa normal — sem rótulos em maiúsculas.
+- **Movimento:** um único movimento automático — um reflexo de luz que atravessa a peça do destaque uma vez, como em metal polido. Os demais movimentos respondem a ações (abrir menu, adicionar ao carrinho, segunda foto no hover do produto). Tudo desligado com `prefers-reduced-motion`.
+- **Formas:** botões em pílula (como um aro), campos e fundos de foto com cantos levemente arredondados; sem sombras nem cartões com borda.
 - **Responsivo:** projetado primeiro para celular; grade de produtos 2 colunas no celular, 3–4 no desktop; menu em gaveta no celular.
 
 ## 5. Páginas
