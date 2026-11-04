@@ -12,8 +12,8 @@ import { DEMO_CARE_TEXT, demoCategories, demoProducts, type DemoProduct } from "
 
 function imagesFor(p: DemoProduct): ProductImage[] {
   return [
-    { src: `/demo-art/${p.slug}.svg`, alt: `Ilustração provisória: ${p.name}` },
-    { src: `/demo-art/${p.slug}-detalhe.svg`, alt: `Ilustração provisória: ${p.name}, detalhe` },
+    { src: `/demo-art/${p.slug}.webp`, alt: `Ilustração provisória: ${p.name}` },
+    { src: `/demo-art/${p.slug}-detalhe.webp`, alt: `Ilustração provisória: ${p.name}, detalhe` },
   ];
 }
 

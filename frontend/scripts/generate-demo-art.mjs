@@ -1,10 +1,13 @@
 // Gera as ilustrações provisórias dos produtos de demonstração em public/demo-art.
-// Uso: node scripts/generate-demo-art.mjs
+// Uso: npm run demo-art
 // Cada produto ganha duas imagens: a peça inteira e um detalhe ampliado.
+// O desenho é feito em SVG e salvo como WebP: SVGs grandes com degradês e sombra borrada
+// travavam o toque no celular (~160 ms até pintar contra ~30 ms em WebP).
 // Substitua por fotografias reais assim que existirem.
 
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, rmSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import sharp from "sharp";
 
 const OUT = fileURLToPath(new URL("../public/demo-art/", import.meta.url));
 const W = 800;
@@ -211,9 +214,13 @@ ${body}
 `;
 }
 
+const toWebp = (markup, file) =>
+  sharp(Buffer.from(markup), { density: 144 }).resize({ width: 1200 }).webp({ quality: 82 }).toFile(file);
+
 mkdirSync(OUT, { recursive: true });
+for (const old of readdirSync(OUT)) rmSync(`${OUT}${old}`);
 for (const art of arts) {
-  writeFileSync(`${OUT}${art.slug}.svg`, svg(art.body, `0 0 ${W} ${H}`, "#edeff1"));
-  writeFileSync(`${OUT}${art.slug}-detalhe.svg`, svg(art.body, art.detail ?? "160 260 480 600", "#e4e7ea"));
+  await toWebp(svg(art.body, `0 0 ${W} ${H}`, "#edeff1"), `${OUT}${art.slug}.webp`);
+  await toWebp(svg(art.body, art.detail ?? "160 260 480 600", "#e4e7ea"), `${OUT}${art.slug}-detalhe.webp`);
 }
 console.log(`${arts.length * 2} ilustrações geradas em ${OUT}`);

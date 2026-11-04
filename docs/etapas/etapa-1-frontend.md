@@ -19,7 +19,7 @@ Loja virtual completa em interface e navegação, funcionando em modo demonstra�
 
 | Verificação | Resultado |
 |---|---|
-| `npm test` (Vitest) | 113 testes passando em 11 arquivos |
+| `npm test` (Vitest) | 114 testes passando em 11 arquivos |
 | `npm run typecheck` | sem erros |
 | `npm run lint` | sem erros nem avisos |
 | `npm run build` | 52 páginas geradas |
@@ -35,6 +35,10 @@ Estão na seção 3 da especificação, com duas revisões feitas durante a impl
 2. Bodoni Moda trocada por Italiana nos títulos.
 
 Ambas evitam a aparência padrão de lojas de moda e estão anotadas na especificação.
+
+## Ajuste após a publicação (desempenho no celular)
+
+No celular, tocar num produto parecia "agarrado". A medição, simulando um celular, mostrou que o código respondia em menos de 10 ms, mas o navegador levava cerca de 160 ms para desenhar as ilustrações vetoriais (SVG grandes, com degradês e sombra borrada) antes de atualizar a tela. As ilustrações passaram a ser geradas em WebP, servidas em tamanho adequado pelo otimizador de imagens do Next.js. Resultado: cerca de 30 ms do toque até a tela atualizar e rolagem sem engasgos. Um teste impede que as imagens de demonstração voltem a ser SVG. As fotografias reais também devem ser enviadas em formato de foto (JPEG ou WebP).
 
 ## Limitações conhecidas do modo demonstração
 

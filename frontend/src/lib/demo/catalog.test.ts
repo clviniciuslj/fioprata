@@ -108,6 +108,19 @@ describe("novidades e relacionados", () => {
   });
 });
 
+describe("imagens de demonstração", () => {
+  // Ilustrações vetoriais grandes travavam o toque no celular (~160 ms até pintar); WebP fica em ~30 ms.
+  it("usam formato de foto (WebP), nunca SVG", () => {
+    const products = listProducts({ sort: "novidades", page: 1 }).items.concat(listProducts({ sort: "novidades", page: 2 }).items);
+    const sources = [
+      ...products.flatMap((p) => p.images.map((i) => i.src)),
+      ...listCategories().flatMap((c) => (c.image ? [c.image.src] : [])),
+    ];
+    expect(sources.length).toBeGreaterThan(0);
+    expect(sources.filter((src) => !src.endsWith(".webp"))).toEqual([]);
+  });
+});
+
 describe("listProductSlugs", () => {
   it("lista o slug de todos os produtos, sem repetição", () => {
     const slugs = listProductSlugs();

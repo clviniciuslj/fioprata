@@ -27,31 +27,31 @@ export const demoCategories: Category[] = [
     slug: "aneis",
     name: "Anéis",
     description: "Aparadores, solitários e anéis de destaque, com numeração do 12 ao 22.",
-    image: { src: "/demo-art/anel-duas-voltas.svg", alt: "Ilustração provisória: anéis" },
+    image: { src: "/demo-art/anel-duas-voltas.webp", alt: "Ilustração provisória: anéis" },
   },
   {
     slug: "colares",
     name: "Colares",
     description: "Correntes e colares com pingente, em comprimentos de 40 a 50 cm.",
-    image: { src: "/demo-art/colar-gota.svg", alt: "Ilustração provisória: colares" },
+    image: { src: "/demo-art/colar-gota.webp", alt: "Ilustração provisória: colares" },
   },
   {
     slug: "brincos",
     name: "Brincos",
     description: "Argolas, pontos de luz e brincos longos para o dia a dia e para a noite.",
-    image: { src: "/demo-art/argola-media.svg", alt: "Ilustração provisória: brincos" },
+    image: { src: "/demo-art/argola-media.webp", alt: "Ilustração provisória: brincos" },
   },
   {
     slug: "pulseiras",
     name: "Pulseiras",
     description: "Pulseiras de elos, riviera e braceletes abertos.",
-    image: { src: "/demo-art/pulseira-riviera.svg", alt: "Ilustração provisória: pulseiras" },
+    image: { src: "/demo-art/pulseira-riviera.webp", alt: "Ilustração provisória: pulseiras" },
   },
   {
     slug: "pingentes",
     name: "Pingentes",
     description: "Pingentes avulsos para combinar com a corrente que você já tem.",
-    image: { src: "/demo-art/pingente-lua.svg", alt: "Ilustração provisória: pingentes" },
+    image: { src: "/demo-art/pingente-lua.webp", alt: "Ilustração provisória: pingentes" },
   },
 ];
 

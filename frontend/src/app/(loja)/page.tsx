@@ -7,7 +7,7 @@ import { Container } from "@/components/ui/container";
 import { ProductGrid } from "@/components/product/product-grid";
 import { ProductImage } from "@/components/product/product-image";
 
-const HERO_IMAGE = { src: "/demo-art/anel-solitario-zirconia.svg", alt: "Ilustração provisória: anel solitário em prata" };
+const HERO_IMAGE = { src: "/demo-art/anel-solitario-zirconia.webp", alt: "Ilustração provisória: anel solitário em prata" };
 
 export default async function HomePage() {
   const [categories, newArrivals, shipping] = await Promise.all([
@@ -26,7 +26,6 @@ export default async function HomePage() {
               alt={HERO_IMAGE.alt}
               fill
               priority
-              unoptimized
               sizes="(min-width: 1024px) 58vw, 100vw"
               className="object-cover object-[50%_40%]"
             />

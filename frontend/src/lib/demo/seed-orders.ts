@@ -22,7 +22,7 @@ function line(variantId: string, quantity: number): OrderLine {
         productName: p.name,
         variantLabel: v.label,
         sku: v.sku,
-        image: { src: `/demo-art/${p.slug}.svg`, alt: `Ilustração provisória: ${p.name}` },
+        image: { src: `/demo-art/${p.slug}.webp`, alt: `Ilustração provisória: ${p.name}` },
         unitPriceCents: v.priceCents,
         quantity,
         lineTotalCents: v.priceCents * quantity,
