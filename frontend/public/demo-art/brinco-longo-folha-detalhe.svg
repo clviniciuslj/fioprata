@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="160 260 480 600" width="800" height="1000">
+<defs>
+  <linearGradient id="s" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#fdfdfe"/>
+    <stop offset=".32" stop-color="#bcc3ca"/>
+    <stop offset=".52" stop-color="#7b848e"/>
+    <stop offset=".72" stop-color="#e2e6ea"/>
+    <stop offset="1" stop-color="#959da6"/>
+  </linearGradient>
+  <linearGradient id="d" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9aa2ab"/>
+    <stop offset="1" stop-color="#5d656e"/>
+  </linearGradient>
+  <linearGradient id="old" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#c9ced3"/>
+    <stop offset=".45" stop-color="#6c747c"/>
+    <stop offset=".7" stop-color="#a7aeb5"/>
+    <stop offset="1" stop-color="#4f565d"/>
+  </linearGradient>
+  <radialGradient id="g" cx=".35" cy=".3" r=".85">
+    <stop offset="0" stop-color="#ffffff"/>
+    <stop offset=".55" stop-color="#e6ecf1"/>
+    <stop offset="1" stop-color="#b3bec9"/>
+  </radialGradient>
+  <filter id="blur" x="-20%" y="-50%" width="140%" height="200%">
+    <feGaussianBlur stdDeviation="14"/>
+  </filter>
+</defs>
+<rect x="-100" y="-100" width="1000" height="1200" fill="#e4e7ea"/>
+<ellipse cx="400" cy="800" rx="200" ry="25" fill="#23272c" opacity=".10" filter="url(#blur)"/>
+  <path d="M300 280 q-16 0 -16 18 q0 14 16 14" fill="none" stroke="url(#s)" stroke-width="5"/>
+  <path d="M300 330 C 364 430, 362 620, 300 720 C 238 620, 236 430, 300 330 Z" fill="url(#old)" stroke="#5d656e" stroke-width="2"/>
+  <path d="M300 350 L300 700" stroke="#454c53" stroke-width="3"/>
+  <path d="M300 420 l34 -34 M300 438 l-34 -34" stroke="#454c53" stroke-width="2" opacity=".8"/><path d="M300 490 l34 -34 M300 508 l-34 -34" stroke="#454c53" stroke-width="2" opacity=".8"/><path d="M300 560 l34 -34 M300 578 l-34 -34" stroke="#454c53" stroke-width="2" opacity=".8"/><path d="M300 630 l34 -34 M300 648 l-34 -34" stroke="#454c53" stroke-width="2" opacity=".8"/>
+  <path d="M500 280 q-16 0 -16 18 q0 14 16 14" fill="none" stroke="url(#s)" stroke-width="5"/>
+  <path d="M500 330 C 564 430, 562 620, 500 720 C 438 620, 436 430, 500 330 Z" fill="url(#old)" stroke="#5d656e" stroke-width="2"/>
+  <path d="M500 350 L500 700" stroke="#454c53" stroke-width="3"/>
+  <path d="M500 420 l34 -34 M500 438 l-34 -34" stroke="#454c53" stroke-width="2" opacity=".8"/><path d="M500 490 l34 -34 M500 508 l-34 -34" stroke="#454c53" stroke-width="2" opacity=".8"/><path d="M500 560 l34 -34 M500 578 l-34 -34" stroke="#454c53" stroke-width="2" opacity=".8"/><path d="M500 630 l34 -34 M500 648 l-34 -34" stroke="#454c53" stroke-width="2" opacity=".8"/>
+</svg>
