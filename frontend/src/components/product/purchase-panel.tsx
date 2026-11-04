@@ -8,6 +8,7 @@ import { useCart } from "@/lib/cart/use-cart";
 import { cx } from "@/lib/cx";
 import { Button } from "@/components/ui/button";
 import { Price } from "@/components/ui/price";
+import { QuantityStepper } from "@/components/ui/quantity-stepper";
 
 export function PurchasePanel({ product }: { product: ProductDetail }) {
   const { items, add, ready } = useCart();
@@ -80,29 +81,7 @@ export function PurchasePanel({ product }: { product: ProductDetail }) {
 
       {variant && !product.soldOut && (
         <div className="flex flex-wrap items-center gap-4">
-          <div className="inline-flex h-11 items-center rounded-full border border-line bg-surface" role="group" aria-label="Quantidade">
-            <button
-              type="button"
-              onClick={() => setQuantity(Math.max(1, qty - 1))}
-              disabled={qty <= 1}
-              className="inline-flex size-11 items-center justify-center text-lg disabled:text-muted/50"
-              aria-label="Diminuir quantidade"
-            >
-              −
-            </button>
-            <span className="w-8 text-center tabular-nums" aria-live="polite">
-              {qty}
-            </span>
-            <button
-              type="button"
-              onClick={() => setQuantity(Math.min(remaining, qty + 1))}
-              disabled={qty >= remaining}
-              className="inline-flex size-11 items-center justify-center text-lg disabled:text-muted/50"
-              aria-label="Aumentar quantidade"
-            >
-              +
-            </button>
-          </div>
+          <QuantityStepper value={qty} max={Math.max(remaining, 1)} onChange={setQuantity} />
           {variant.available === 1 && <p className="text-[15px] text-ink-soft">Última unidade</p>}
         </div>
       )}
