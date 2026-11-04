@@ -4,12 +4,19 @@ import { findVariant } from "./catalog";
 import { demoShippingRule } from "./catalog-data";
 import { computeShippingCents } from "./shipping";
 
+/** Soma linhas da mesma variação: o estoque é conferido pelo total, nunca linha a linha. */
+function mergeItems(items: CartItemInput[]): CartItemInput[] {
+  const merged = new Map<string, number>();
+  for (const item of items) merged.set(item.variantId, (merged.get(item.variantId) ?? 0) + item.quantity);
+  return [...merged].map(([variantId, quantity]) => ({ variantId, quantity }));
+}
+
 /** Recalcula o carrinho com preços e estoque do servidor; nada vindo do navegador é confiado além de ids e quantidades. */
 export function quoteCart(req: CartQuoteRequest): CartQuote {
   const lines: CartQuoteLine[] = [];
   const removedVariantIds: string[] = [];
 
-  for (const item of req.items) {
+  for (const item of mergeItems(req.items)) {
     const found = findVariant(item.variantId);
     if (!found) {
       removedVariantIds.push(item.variantId);
@@ -66,7 +73,11 @@ export function parseCartItems(raw: unknown): Parsed<CartItemInput[]> {
     }
     items.push({ variantId, quantity });
   }
-  return { ok: true, value: items };
+  const merged = mergeItems(items);
+  if (merged.some((i) => i.quantity > MAX_LINE_QTY)) {
+    return invalid(`A quantidade de cada item deve ficar entre 1 e ${MAX_LINE_QTY}.`);
+  }
+  return { ok: true, value: merged };
 }
 
 export function parseCartQuoteRequest(body: unknown): Parsed<CartQuoteRequest> {

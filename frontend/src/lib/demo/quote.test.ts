@@ -72,6 +72,18 @@ describe("quoteCart", () => {
     expect(quote.hasIssues).toBe(true);
   });
 
+  it("junta a mesma variação repetida antes de conferir o estoque", () => {
+    const quote = quoteCart({
+      items: [
+        { variantId: "p12-u", quantity: 1 },
+        { variantId: "p12-u", quantity: 1 },
+      ],
+    });
+    expect(quote.lines).toHaveLength(1);
+    expect(quote.lines[0]).toMatchObject({ quantity: 2, issue: "insufficient" });
+    expect(quote.hasIssues).toBe(true);
+  });
+
   it("não cobra frete de carrinho vazio", () => {
     const quote = quoteCart({ items: [], state: "SP" });
     expect(quote.shippingCents).toBeNull();
@@ -100,6 +112,25 @@ describe("parseCartQuoteRequest", () => {
   it("recusa mais de 50 itens", () => {
     const items = Array.from({ length: 51 }, (_, i) => ({ variantId: `v${i}`, quantity: 1 }));
     expect(parseCartQuoteRequest({ items }).ok).toBe(false);
+  });
+
+  it("junta itens repetidos e recusa quando a soma passa de 10", () => {
+    expect(
+      parseCartQuoteRequest({
+        items: [
+          { variantId: "a", quantity: 2 },
+          { variantId: "a", quantity: 3 },
+        ],
+      }),
+    ).toEqual({ ok: true, value: { items: [{ variantId: "a", quantity: 5 }] } });
+    expect(
+      parseCartQuoteRequest({
+        items: [
+          { variantId: "a", quantity: 6 },
+          { variantId: "a", quantity: 6 },
+        ],
+      }).ok,
+    ).toBe(false);
   });
 
   it("recusa estado inválido", () => {

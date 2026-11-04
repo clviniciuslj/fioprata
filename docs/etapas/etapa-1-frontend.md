@@ -11,7 +11,7 @@ Loja virtual completa em interface e navegação, funcionando em modo demonstra�
 - **Identidade visual provisória:** marca "Sua Marca", paleta mineral fria (tons de prata, sem dourado), títulos em Italiana e textos em Jost. Um único movimento automático: um reflexo de luz que passa sobre a peça da página inicial.
 - **Páginas:** início, catálogo com ordenação e paginação, categorias, produto (galeria, escolha de numeração/comprimento, quantidade, especificações), carrinho, finalização em 3 etapas, cadastro, login, confirmação de e-mail, recuperação e redefinição de senha, área do cliente, histórico e acompanhamento de pedidos com linha do tempo, políticas de privacidade e de troca, contato, 404 e erro.
 - **Contrato com o backend:** `frontend/src/lib/api/contract.ts` define todos os tipos e as rotas `/api/*` que a API ASP.NET vai implementar.
-- **Regras de servidor já no fluxo:** preços, estoque e frete recalculados a cada exibição; o carrinho do navegador guarda só variação e quantidade; pedido com `Idempotency-Key`; sessão em cookie `HttpOnly; SameSite=Lax; Secure`; área do cliente protegida no proxy, na página e na API; um cliente nunca vê o pedido de outro.
+- **Regras de servidor já no fluxo:** preços, estoque e frete recalculados a cada exibição; linhas repetidas da mesma variação são somadas antes de conferir o estoque; o carrinho do navegador guarda só variação e quantidade; pedido com `Idempotency-Key`; sessão em cookie `HttpOnly; SameSite=Lax; Secure`; área do cliente protegida no proxy, na página e na API; um cliente nunca vê o pedido de outro.
 - **Segurança básica:** cabeçalhos `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` e `Permissions-Policy`; sem `X-Powered-By`; redirecionamento após login aceita só caminhos internos; corpo das requisições com limite de tamanho e validação.
 - **Responsivo:** conferido em 390px e 1440px, sem rolagem horizontal.
 
@@ -19,7 +19,7 @@ Loja virtual completa em interface e navegação, funcionando em modo demonstra�
 
 | Verificação | Resultado |
 |---|---|
-| `npm test` (Vitest) | 110 testes passando em 11 arquivos |
+| `npm test` (Vitest) | 113 testes passando em 11 arquivos |
 | `npm run typecheck` | sem erros |
 | `npm run lint` | sem erros nem avisos |
 | `npm run build` | 52 páginas geradas |

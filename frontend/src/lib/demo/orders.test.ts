@@ -60,6 +60,16 @@ describe("createDemoOrder", () => {
     expect(listOrdersFor(customer)).toHaveLength(0);
   });
 
+  it("recusa com 409 quando a mesma última unidade aparece em linhas repetidas", () => {
+    const customer = newCustomer();
+    const items = [
+      { variantId: "p12-u", quantity: 1 },
+      { variantId: "p12-u", quantity: 1 },
+    ];
+    expect(createDemoOrder(customer, { items, address }, "chave-dup", NOW)).toMatchObject({ ok: false, status: 409 });
+    expect(listOrdersFor(customer)).toHaveLength(0);
+  });
+
   it("recusa com 400 e aponta o CEP inválido", () => {
     const result = createDemoOrder(newCustomer(), { items: [{ variantId: "p01-a16", quantity: 1 }], address: { ...address, postalCode: "0131010" } }, "chave-y", NOW);
     expect(result.ok).toBe(false);
