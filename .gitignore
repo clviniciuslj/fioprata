@@ -1,0 +1,23 @@
+# Dependências e builds
+node_modules/
+.next/
+out/
+bin/
+obj/
+
+# Segredos e configurações locais — nunca versionar
+.env
+.env.*
+!.env.example
+appsettings.*.local.json
+*.pfx
+*.key
+
+# Ferramentas
+.vs/
+.idea/
+*.user
+coverage/
+*.log
+.DS_Store
+Thumbs.db
